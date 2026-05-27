@@ -7,8 +7,4 @@ public class CompletedTask {
         this.game = game;
         this.task = task;
     }
-
-    public void setTask(String task) {
-        this.task = task;
-    }
 }

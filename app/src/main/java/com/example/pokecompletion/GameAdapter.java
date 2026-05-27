@@ -19,20 +19,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 public class GameAdapter extends ArrayAdapter<GameData> {
-    JSONArray jsonArray;
     ArrayList<CompletedTask> completedTaskList = new ArrayList<>();
     JSONObject jsonObject;
     String filename = "completed_tasks.json";
