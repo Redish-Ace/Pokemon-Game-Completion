@@ -20,7 +20,7 @@
             tools:listitem="@layout/game_item"
             android:scrollbars="vertical"
             android:divider="@color/transparent"
-            android:dividerHeight="5dp"/>
+            android:dividerHeight="10dp" />
 
     </RelativeLayout>
 

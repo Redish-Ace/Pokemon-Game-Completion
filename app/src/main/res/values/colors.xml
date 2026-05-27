@@ -3,4 +3,205 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="spinner_default">#E0E0E0</color>
+    <color name="card_default">#FFFFFF</color>
+
+    <color name="red_text">#FFFFFF</color>
+    <color name="red_spinner">#F78C50</color>
+    <color name="red_card">#DB1B21</color>
+
+    <!-- BLUE -->
+    <color name="blue_text">#FFFFFF</color>
+    <color name="blue_spinner">#61CCEE</color>
+    <color name="blue_card">#009EDA</color>
+
+    <!-- YELLOW -->
+    <color name="yellow_text">#000000</color>
+    <color name="yellow_spinner">#F6DD59</color>
+    <color name="yellow_card">#F7CD00</color>
+
+    <!-- GOLD -->
+    <color name="gold_text">#000000</color>
+    <color name="gold_spinner">#BEB07B</color>
+    <color name="gold_card">#9A8D54</color>
+
+    <!-- SILVER -->
+    <color name="silver_text">#000000</color>
+    <color name="silver_spinner">#CED3D8</color>
+    <color name="silver_card">#AAB1B9</color>
+
+    <!-- CRYSTAL -->
+    <color name="crystal_text">#FFFFFF</color>
+    <color name="crystal_spinner">#27BA9C</color>
+    <color name="crystal_card">#2284C6</color>
+
+    <!-- RUBY -->
+    <color name="ruby_text">#FFFFFF</color>
+    <color name="ruby_spinner">#E65330</color>
+    <color name="ruby_card">#BE3D2E</color>
+
+    <!-- SAPPHIRE -->
+    <color name="sapphire_text">#FFFFFF</color>
+    <color name="sapphire_spinner">#07A0DB</color>
+    <color name="sapphire_card">#0173B3</color>
+
+    <!-- EMERALD -->
+    <color name="emerald_text">#FFFFFF</color>
+    <color name="emerald_spinner">#59B274</color>
+    <color name="emerald_card">#01A64F</color>
+
+    <!-- FIRERED -->
+    <color name="firered_text">#FFFFFF</color>
+    <color name="firered_spinner">#E46630</color>
+    <color name="firered_card">#C65731</color>
+
+    <!-- LEAFGREEN -->
+    <color name="leafgreen_text">#FFFFFF</color>
+    <color name="leafgreen_spinner">#AAC351</color>
+    <color name="leafgreen_card">#93C951</color>
+
+    <!-- DIAMOND -->
+    <color name="diamond_text">#FFFFFF</color>
+    <color name="diamond_spinner">#B4E0EB</color>
+    <color name="diamond_card">#2B488A</color>
+
+    <!-- PEARL -->
+    <color name="pearl_text">#000000</color>
+    <color name="pearl_spinner">#F2CCC5</color>
+    <color name="pearl_card">#BC9C9D</color>
+
+    <!-- PLATINUM -->
+    <color name="platinum_text">#000000</color>
+    <color name="platinum_spinner">#C7C6C9</color>
+    <color name="platinum_card">#9E9E9E</color>
+
+    <!-- HEART GOLD -->
+    <color name="heartgold_text">#000000</color>
+    <color name="heartgold_spinner">#FFD949</color>
+    <color name="heartgold_card">#C69C30</color>
+
+    <!-- SOUL SILVER -->
+    <color name="soulsilver_text">#000000</color>
+    <color name="soulsilver_spinner">#FBFDFA</color>
+    <color name="soulsilver_card">#BBC2C8</color>
+
+    <!-- BLACK -->
+    <color name="black_text">#FFFFFF</color>
+    <color name="black_spinner">#424242</color>
+    <color name="black_card">#212121</color>
+
+    <!-- WHITE -->
+    <color name="white_text">#000000</color>
+    <color name="white_spinner">#CCCFD0</color>
+    <color name="white_card">#FFFFFF</color>
+
+    <!-- BLACK 2 -->
+    <color name="black2_text">#FFFFFF</color>
+    <color name="black2_spinner">#82CCFB</color>
+    <color name="black2_card">#090407</color>
+
+    <!-- WHITE 2 -->
+    <color name="white2_text">#000000</color>
+    <color name="white2_spinner">#F0A15F</color>
+    <color name="white2_card">#FEFFFE</color>
+
+    <!-- X -->
+    <color name="x_text">#FFFFFF</color>
+    <color name="x_spinner">#0D1A34</color>
+    <color name="x_card">#015F9B</color>
+
+    <!-- Y -->
+    <color name="y_text">#FFFFFF</color>
+    <color name="y_spinner">#C2185B</color>
+    <color name="y_card">#D4233F</color>
+
+    <!-- OMEGA RUBY -->
+    <color name="omegaruby_text">#FFFFFF</color>
+    <color name="omegaruby_spinner">#D26B30</color>
+    <color name="omegaruby_card">#8E1120</color>
+
+    <!-- ALPHA SAPPHIRE -->
+    <color name="alphasapphire_text">#FFFFFF</color>
+    <color name="alphasapphire_spinner">#25A0A5</color>
+    <color name="alphasapphire_card">#2A4395</color>
+
+    <!-- SUN -->
+    <color name="sun_text">#000000</color>
+    <color name="sun_spinner">#FBD800</color>
+    <color name="sun_card">#FF9800</color>
+
+    <!-- MOON -->
+    <color name="moon_text">#FFFFFF</color>
+    <color name="moon_spinner">#4793CA</color>
+    <color name="moon_card">#2D3D8A</color>
+
+    <!-- ULTRA SUN -->
+    <color name="ultrasun_text">#000000</color>
+    <color name="ultrasun_spinner">#E57B24</color>
+    <color name="ultrasun_card">#DE4422</color>
+
+    <!-- ULTRA MOON -->
+    <color name="ultramoon_text">#FFFFFF</color>
+    <color name="ultramoon_spinner">#79CDF1</color>
+    <color name="ultramoon_card">#253684</color>
+
+    <!-- PIKACHU -->
+    <color name="pikachu_text">#FFFFFF</color>
+    <color name="pikachu_spinner">#FBE666</color>
+    <color name="pikachu_card">#E7BA41</color>
+
+    <!-- EEVEE -->
+    <color name="eevee_text">#FFFFFF</color>
+    <color name="eevee_spinner">#EFBC71</color>
+    <color name="eevee_card">#C4813D</color>
+
+    <!-- SWORD -->
+    <color name="sword_text">#FFFFFF</color>
+    <color name="sword_spinner">#4CC1B6</color>
+    <color name="sword_card">#00AEEF</color>
+
+    <!-- SHIELD -->
+    <color name="shield_text">#FFFFFF</color>
+    <color name="shield_spinner">#891145</color>
+    <color name="shield_card">#EC1065</color>
+
+    <!-- BRILLIANT DIAMOND -->
+    <color name="brilliantdiamond_text">#FFFFFF</color>
+    <color name="brilliantdiamond_spinner">#29D7F7</color>
+    <color name="brilliantdiamond_card">#2965BA</color>
+
+    <!-- SHINNING PEARL -->
+    <color name="shinningpearl_text">#000000</color>
+    <color name="shinningpearl_spinner">#F4B2AF</color>
+    <color name="shinningpearl_card">#D37884</color>
+
+    <!-- LEGENDS ARCEUS -->
+    <color name="arceus_text">#000000</color>
+    <color name="arceus_spinner">#D1B345</color>
+    <color name="arceus_card">#E6E5E2</color>
+
+    <!-- SCARLET -->
+    <color name="scarlet_text">#FFFFFF</color>
+    <color name="scarlet_spinner">#DC3914</color>
+    <color name="scarlet_card">#CB141F</color>
+
+    <!-- VIOLET -->
+    <color name="violet_text">#FFFFFF</color>
+    <color name="violet_spinner">#C5608C</color>
+    <color name="violet_card">#6F1A87</color>
+
+    <!-- LEGENDS ZA -->
+    <color name="za_text">#FFFFFF</color>
+    <color name="za_spinner">#86CA92</color>
+    <color name="za_card">#3F3D3E</color>
+
+    <!-- WINDS -->
+    <color name="winds_text">#FFFFFF</color>
+    <color name="winds_spinner">#68EFA9</color>
+    <color name="winds_card">#468C7A</color>
+
+    <!-- WAVES -->
+    <color name="waves_text">#FFFFFF</color>
+    <color name="waves_spinner">#8764B4</color>
+    <color name="waves_card">#132CBC</color>
 </resources>
