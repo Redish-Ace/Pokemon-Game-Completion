@@ -2,6 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="icon">#212121</color>
+
+    <color name="button_background">#06970c</color>
+    <color name="button_active_background">#066209</color>
+
     <color name="transparent">#00000000</color>
     <color name="spinner_default">#E0E0E0</color>
     <color name="card_default">#FFFFFF</color>

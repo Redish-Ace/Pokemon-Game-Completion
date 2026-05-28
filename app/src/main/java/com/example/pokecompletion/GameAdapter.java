@@ -31,10 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameAdapter extends ArrayAdapter<GameData> {
-    ArrayList<CompletedTask> completedTaskList = new ArrayList<>();
-    JSONObject jsonObject;
-    String filename = "completed_tasks.json";
-
+    ArrayList<CompletedTask> completedTaskList;
     int[][] themes = { {R.color.red_card, R.color.red_text, R.color.red_spinner}, {R.color.blue_card, R.color.blue_text, R.color.blue_spinner}, {R.color.yellow_card, R.color.yellow_text, R.color.yellow_spinner},
             {R.color.gold_card, R.color.gold_text, R.color.gold_spinner}, {R.color.silver_card, R.color.silver_text, R.color.silver_spinner}, {R.color.crystal_card, R.color.crystal_text, R.color.crystal_spinner},
             {R.color.ruby_card, R.color.ruby_text, R.color.ruby_spinner}, {R.color.sapphire_card, R.color.sapphire_text, R.color.sapphire_spinner}, {R.color.emerald_card, R.color.emerald_text, R.color.emerald_spinner},
@@ -55,7 +52,7 @@ public class GameAdapter extends ArrayAdapter<GameData> {
 
     public GameAdapter(@NonNull Context context, @NonNull List<GameData> objects) {
         super(context, R.layout.game_item, R.id.gameName, objects);
-        readTaskJSON();
+        completedTaskList = CompletedJSON.getCompletedTasks(this.getContext());
     }
 
     @NonNull
@@ -91,7 +88,7 @@ public class GameAdapter extends ArrayAdapter<GameData> {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TextView gameName = view.findViewById(R.id.gameName);
                 //writeTaskJSON(gameName.getText().toString(), gameTasks.);
-                writeTaskJSON(gameData.name, gameTasks.getSelectedItem().toString());
+                CompletedJSON.writeTaskJSON(gameTasks.getContext(), gameData.name, gameTasks.getSelectedItem().toString());
             }
 
             @Override
@@ -99,66 +96,5 @@ public class GameAdapter extends ArrayAdapter<GameData> {
         });
 
         return view;
-    }
-
-    private void readTaskJSON(){
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            InputStream is = this.getContext().openFileInput(filename);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while((line = br.readLine()) != null){
-                stringBuilder.append(line).append("\n");
-            }
-            br.close();
-            is.close();
-        } catch (Exception e) {
-            Log.d("Reading JSON Error", Objects.requireNonNull(e.getMessage()));
-            createJSON();
-            readTaskJSON();
-        }
-
-        try{
-            jsonObject = new JSONObject(stringBuilder.toString());
-            Iterator<String> gamesIterator = jsonObject.keys();
-            while(gamesIterator.hasNext()){
-                String game = gamesIterator.next();
-                String task = jsonObject.getString(game);
-                CompletedTask completedTask = new CompletedTask(game, task);
-                completedTaskList.add(completedTask);
-            }
-            Log.d("Task JSON", completedTaskList.toString());
-        } catch (JSONException e){
-            Log.d("Getting Array Error", Objects.requireNonNull(e.getMessage()));
-        }
-    }
-
-    private void writeTaskJSON(String game, String task){
-        try {
-            jsonObject.put(game, task);
-            FileOutputStream fos = this.getContext().openFileOutput(filename, Context.MODE_PRIVATE);
-            fos.write(jsonObject.toString().getBytes());
-            fos.close();
-            Log.d("Update JSON", "Successful");
-        } catch (Exception e){
-            Log.d("Update JSON Error", Objects.requireNonNull(e.getMessage()));
-        }
-    }
-
-    private void createJSON(){
-        InputStream is = this.getContext().getResources().openRawResource(R.raw.tasks_completed);
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
-            }
-            FileOutputStream fos = this.getContext().openFileOutput(filename, Context.MODE_PRIVATE);
-            fos.write(stringBuilder.toString().getBytes());
-            fos.close();
-        }
-        catch (Exception e){
-            Log.d("Create JSON Error", Objects.requireNonNull(e.getMessage()));
-        }
     }
 }

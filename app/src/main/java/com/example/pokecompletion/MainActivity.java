@@ -1,12 +1,19 @@
 package com.example.pokecompletion;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,13 +23,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_WRITE_STORAGE = 100;
+    private static final int REQUEST_CODE = 100;
     GameAdapter gameAdapter;
     JSONArray jsonArray;
     List<GameData> gameDataList = new ArrayList<>();
@@ -39,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         readJSON(this);
+
+        AppCompatButton btn = findViewById(R.id.csvButton);
+        btn.setOnClickListener(v -> {
+            writeCSV();
+        });
     }
 
     private void readJSON(Context context) {
@@ -98,5 +115,58 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return arrayList;
+    }
+
+    /*private void writeCSV(){
+        File csvFile = new File(Environment.getExternalStorageDirectory(), "completed_tasks.csv");
+
+        if(csvFile.exists()){
+            csvFile.delete();
+        }
+
+        try(FileWriter fw = new FileWriter(csvFile)){
+            ArrayList<CompletedTask> completedTaskList = CompletedJSON.getCompletedTasks(this.getBaseContext());
+            for (int i = 0; i < completedTaskList.size(); i++){
+                CompletedTask task = completedTaskList.get(i);
+                String line = String.format("%s,%s\n", task.game, task.task);
+                fw.append(line);
+            }
+            Toast.makeText(this.getBaseContext(), "Saved into completed_tasks.csv", Toast.LENGTH_SHORT).show();
+        } catch (IOException e){
+            Log.d("CSV Write Error", Objects.requireNonNull(e.getMessage()));
+        }
+    }*/
+
+    private void writeCSV() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.MediaColumns.DISPLAY_NAME, "completed_tasks.csv");
+        values.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
+        values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
+
+        ContentResolver resolver = getContentResolver();
+        Uri uri = resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), values);
+
+        if (uri != null) {
+            try (OutputStream outputStream = resolver.openOutputStream(uri);
+                 OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
+
+                ArrayList<CompletedTask> completedTaskList = CompletedJSON.getCompletedTasks(this.getBaseContext());
+
+                // Add header
+                writer.write("Game,Task\n");
+
+                for (int i = 0; i < completedTaskList.size(); i++) {
+                    CompletedTask task = completedTaskList.get(i);
+                    String line = String.format("%s,%s\n", task.game, task.task);
+                    writer.write(line);
+                }
+
+                Toast.makeText(this.getBaseContext(), "Saved into completed_tasks.csv in Documents folder", Toast.LENGTH_SHORT).show();
+
+            } catch (IOException e) {
+                Log.d("CSV Write Error", Objects.requireNonNull(e.getMessage()));
+                Toast.makeText(this.getBaseContext(), "Failed to save CSV file", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
