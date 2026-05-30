@@ -117,34 +117,27 @@ public class MainActivity extends AppCompatActivity {
         return arrayList;
     }
 
-    /*private void writeCSV(){
-        File csvFile = new File(Environment.getExternalStorageDirectory(), "completed_tasks.csv");
-
-        if(csvFile.exists()){
-            csvFile.delete();
-        }
-
-        try(FileWriter fw = new FileWriter(csvFile)){
-            ArrayList<CompletedTask> completedTaskList = CompletedJSON.getCompletedTasks(this.getBaseContext());
-            for (int i = 0; i < completedTaskList.size(); i++){
-                CompletedTask task = completedTaskList.get(i);
-                String line = String.format("%s,%s\n", task.game, task.task);
-                fw.append(line);
-            }
-            Toast.makeText(this.getBaseContext(), "Saved into completed_tasks.csv", Toast.LENGTH_SHORT).show();
-        } catch (IOException e){
-            Log.d("CSV Write Error", Objects.requireNonNull(e.getMessage()));
-        }
-    }*/
-
     private void writeCSV() {
+        ContentResolver resolver = getContentResolver();
+        Uri collectionUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+
+        // Delete existing file first
+        String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=? AND " +
+                MediaStore.MediaColumns.RELATIVE_PATH + "=?";
+        String[] selectionArgs = new String[]{"completed_tasks.csv", Environment.DIRECTORY_DOCUMENTS + "/"};
+
+        int deleted = resolver.delete(collectionUri, selection, selectionArgs);
+        if (deleted > 0) {
+            Log.d("CSV Write", "Deleted existing file: " + deleted + " record(s)");
+        }
+
+        // Now create new file
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, "completed_tasks.csv");
         values.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
         values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
 
-        ContentResolver resolver = getContentResolver();
-        Uri uri = resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), values);
+        Uri uri = resolver.insert(collectionUri, values);
 
         if (uri != null) {
             try (OutputStream outputStream = resolver.openOutputStream(uri);
@@ -152,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList<CompletedTask> completedTaskList = CompletedJSON.getCompletedTasks(this.getBaseContext());
 
-                // Add header
                 writer.write("Game,Task\n");
 
                 for (int i = 0; i < completedTaskList.size(); i++) {

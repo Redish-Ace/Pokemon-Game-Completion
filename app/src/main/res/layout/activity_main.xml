@@ -21,7 +21,7 @@
                 android:id="@+id/csvButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_layout"
+                android:background="@drawable/button_clicked"
                 android:text="CSV"/>
 
         </RelativeLayout>
