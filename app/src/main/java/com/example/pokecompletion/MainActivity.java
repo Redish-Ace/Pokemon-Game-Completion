@@ -33,8 +33,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE_WRITE_STORAGE = 100;
-    private static final int REQUEST_CODE = 100;
     GameAdapter gameAdapter;
     JSONArray jsonArray;
     List<GameData> gameDataList = new ArrayList<>();
@@ -53,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
         readJSON(this);
 
         AppCompatButton btn = findViewById(R.id.csvButton);
-        btn.setOnClickListener(v -> {
-            writeCSV();
-        });
+        btn.setOnClickListener(v -> writeCSV());
     }
 
     private void readJSON(Context context) {
@@ -121,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         Uri collectionUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
 
-        // Delete existing file first
         String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=? AND " +
                 MediaStore.MediaColumns.RELATIVE_PATH + "=?";
         String[] selectionArgs = new String[]{"completed_tasks.csv", Environment.DIRECTORY_DOCUMENTS + "/"};
@@ -131,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("CSV Write", "Deleted existing file: " + deleted + " record(s)");
         }
 
-        // Now create new file
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, "completed_tasks.csv");
         values.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
