@@ -1,4 +1,4 @@
-package com.example.pokecompletion;
+package com.recacer.pokecompletion;
 
 public class CompletedTask {
     String game, task;

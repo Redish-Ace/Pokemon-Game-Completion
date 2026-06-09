@@ -1,4 +1,4 @@
-package com.example.pokecompletion;
+package com.recacer.pokecompletion;
 
 import android.content.Context;
 import android.view.LayoutInflater;

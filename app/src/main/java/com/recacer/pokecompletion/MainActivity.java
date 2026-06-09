@@ -1,4 +1,4 @@
-package com.example.pokecompletion;
+package com.recacer.pokecompletion;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
