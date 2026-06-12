@@ -3,131 +3,48 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="icon">#212121</color>
-
-    <color name="button_background">#52856B</color>
-    <color name="button_active_background">#3c614e</color>
-
+    <color name="button_active_background">#33000000</color>
+    <color name="dark_transparent">#55000000</color>
     <color name="transparent">#00000000</color>
-    <color name="spinner_default">#E0E0E0</color>
-    <color name="card_default">#FFFFFF</color>
-
-    <color name="red_spinner">#F78C50</color>
-    <color name="red_card">#DB1B21</color>
-
-    <color name="blue_spinner">#61CCEE</color>
-    <color name="blue_card">#009EDA</color>
-
-    <color name="yellow_spinner">#F6DD59</color>
-    <color name="yellow_card">#F7CD00</color>
-
-    <color name="gold_spinner">#BEB07B</color>
-    <color name="gold_card">#9A8D54</color>
-
-    <color name="silver_spinner">#CED3D8</color>
-    <color name="silver_card">#AAB1B9</color>
-
-    <color name="crystal_spinner">#27BA9C</color>
-    <color name="crystal_card">#2284C6</color>
-
-    <color name="ruby_spinner">#E65330</color>
-    <color name="ruby_card">#BE3D2E</color>
-
-    <color name="sapphire_spinner">#07A0DB</color>
-    <color name="sapphire_card">#0173B3</color>
-
-    <color name="emerald_spinner">#59B274</color>
-    <color name="emerald_card">#01A64F</color>
-
-    <color name="firered_spinner">#E46630</color>
-    <color name="firered_card">#C65731</color>
-
-    <color name="leafgreen_spinner">#AAC351</color>
-    <color name="leafgreen_card">#93C951</color>
-
-    <color name="diamond_spinner">#B4E0EB</color>
-    <color name="diamond_card">#2B488A</color>
-
-    <color name="pearl_spinner">#F2CCC5</color>
-    <color name="pearl_card">#BC9C9D</color>
-
-    <color name="platinum_spinner">#C7C6C9</color>
-    <color name="platinum_card">#9E9E9E</color>
-
-    <color name="heartgold_spinner">#FFD949</color>
-    <color name="heartgold_card">#C69C30</color>
-
-    <color name="soulsilver_spinner">#FBFDFA</color>
-    <color name="soulsilver_card">#BBC2C8</color>
-
-    <color name="black_spinner">#424242</color>
-    <color name="black_card">#212121</color>
-
-    <color name="white_spinner">#CCCFD0</color>
-    <color name="white_card">#FFFFFF</color>
-
-    <color name="black2_spinner">#82CCFB</color>
-    <color name="black2_card">#090407</color>
-
-    <color name="white2_spinner">#F0A15F</color>
-    <color name="white2_card">#FEFFFE</color>
-
-    <color name="x_spinner">#0D1A34</color>
-    <color name="x_card">#015F9B</color>
-
-    <color name="y_spinner">#C2185B</color>
-    <color name="y_card">#D4233F</color>
-
-    <color name="omegaruby_spinner">#D26B30</color>
-    <color name="omegaruby_card">#8E1120</color>
-
-    <color name="alphasapphire_spinner">#25A0A5</color>
-    <color name="alphasapphire_card">#2A4395</color>
-
-    <color name="sun_spinner">#FBD800</color>
-    <color name="sun_card">#FF9800</color>
-
-    <color name="moon_spinner">#4793CA</color>
-    <color name="moon_card">#2D3D8A</color>
-
-    <color name="ultrasun_spinner">#E57B24</color>
-    <color name="ultrasun_card">#DE4422</color>
-
-    <color name="ultramoon_spinner">#79CDF1</color>
-    <color name="ultramoon_card">#253684</color>
-
-    <color name="pikachu_spinner">#FBE666</color>
-    <color name="pikachu_card">#E7BA41</color>
-
-    <color name="eevee_spinner">#EFBC71</color>
-    <color name="eevee_card">#C4813D</color>
-
-    <color name="sword_spinner">#4CC1B6</color>
-    <color name="sword_card">#00AEEF</color>
-
-    <color name="shield_spinner">#891145</color>
-    <color name="shield_card">#EC1065</color>
-
-    <color name="brilliantdiamond_spinner">#29D7F7</color>
-    <color name="brilliantdiamond_card">#2965BA</color>
-
-    <color name="shinningpearl_spinner">#F4B2AF</color>
-    <color name="shinningpearl_card">#D37884</color>
-
-    <color name="arceus_spinner">#D1B345</color>
-    <color name="arceus_card">#E6E5E2</color>
-
-    <color name="scarlet_spinner">#DC3914</color>
-    <color name="scarlet_card">#CB141F</color>
-
-    <color name="violet_spinner">#C5608C</color>
-    <color name="violet_card">#6F1A87</color>
-
-    <color name="za_spinner">#86CA92</color>
-    <color name="za_card">#3F3D3E</color>
-
-    <color name="winds_spinner">#68EFA9</color>
-    <color name="winds_card">#468C7A</color>
-
-    <color name="waves_spinner">#8764B4</color>
-    <color name="waves_card">#132CBC</color>
+    <color name="csv_green">#52856B</color>
+    <color name="red">#DB1B21</color>
+    <color name="blue">#009EDA</color>
+    <color name="yellow">#F7CD00</color>
+    <color name="gold">#9A8D54</color>
+    <color name="silver">#AAB1B9</color>
+    <color name="crystal">#2284C6</color>
+    <color name="ruby">#BE3D2E</color>
+    <color name="sapphire">#0173B3</color>
+    <color name="emerald">#01A64F</color>
+    <color name="fire">#C65731</color>
+    <color name="leaf">#93C951</color>
+    <color name="diamond">#2B488A</color>
+    <color name="pearl">#BC9C9D</color>
+    <color name="platinum">#9E9E9E</color>
+    <color name="heart">#C69C30</color>
+    <color name="soul">#BBC2C8</color>
+    <color name="b">#0C0D0F</color>
+    <color name="w">#FDFEFD</color>
+    <color name="b2">#07080B</color>
+    <color name="w2">#EEEFEE</color>
+    <color name="x">#015F9B</color>
+    <color name="y">#D4233F</color>
+    <color name="omega">#8E1120</color>
+    <color name="alpha">#2A4395</color>
+    <color name="sun">#FF9800</color>
+    <color name="moon">#2393CE</color>
+    <color name="ultras">#DE4422</color>
+    <color name="ultram">#814D98</color>
+    <color name="pikachu">#E7BA41</color>
+    <color name="eevee">#C4813D</color>
+    <color name="sword">#00AEEF</color>
+    <color name="shield">#EC1065</color>
+    <color name="brilliant">#2965BA</color>
+    <color name="shining">#D37884</color>
+    <color name="arceus">#E6E5E2</color>
+    <color name="scarlet">#CB141F</color>
+    <color name="violet">#6F1A87</color>
+    <color name="za">#3F3D3E</color>
+    <color name="winds">#468C7A</color>
+    <color name="waves">#132CBC</color>
 </resources>

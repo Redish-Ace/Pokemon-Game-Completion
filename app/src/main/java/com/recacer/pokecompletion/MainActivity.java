@@ -1,17 +1,12 @@
 package com.recacer.pokecompletion;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
@@ -19,24 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    GameAdapter gameAdapter;
-    JSONArray jsonArray;
-    List<GameData> gameDataList = new ArrayList<>();
-
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,111 +30,29 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        readJSON(this);
+        CompletedJSON.updateJSON(this.getBaseContext());
+
+        Button[] btns = {findViewById(R.id.btn_red), findViewById(R.id.btn_blue), findViewById(R.id.btn_yellow),
+                findViewById(R.id.btn_gold), findViewById(R.id.btn_silver), findViewById(R.id.btn_crystal),
+                findViewById(R.id.btn_ruby), findViewById(R.id.btn_sapphire), findViewById(R.id.btn_emerald), findViewById(R.id.btn_fire), findViewById(R.id.btn_leaf),
+                findViewById(R.id.btn_diamond), findViewById(R.id.btn_pearl), findViewById(R.id.btn_platinum), findViewById(R.id.btn_heart), findViewById(R.id.btn_soul),
+                findViewById(R.id.btn_black), findViewById(R.id.btn_black2), findViewById(R.id.btn_white), findViewById(R.id.btn_white2),
+                findViewById(R.id.btn_x), findViewById(R.id.btn_y), findViewById(R.id.btn_omega), findViewById(R.id.btn_alpha),
+                findViewById(R.id.btn_sun), findViewById(R.id.btn_moon), findViewById(R.id.btn_ultras), findViewById(R.id.btn_ultram), findViewById(R.id.btn_pikachu), findViewById(R.id.btn_eevee),
+                findViewById(R.id.btn_sword), findViewById(R.id.btn_shield), findViewById(R.id.btn_brilliant), findViewById(R.id.btn_shinning), findViewById(R.id.btn_la),
+                findViewById(R.id.btn_scarlet), findViewById(R.id.btn_violet), findViewById(R.id.btn_za)};
+
+        for(final Button btn: btns){
+            String game = btn.getText().toString();
+
+            btn.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("GAME_NAME", game);
+                startActivity(intent);
+            });
+        }
 
         AppCompatButton btn = findViewById(R.id.csvButton);
-        btn.setOnClickListener(v -> writeCSV());
-    }
-
-    private void readJSON(Context context) {
-        InputStream is = context.getResources().openRawResource(R.raw.pokemon_game_tasks);
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))){
-            String line;
-            while((line = br.readLine()) != null){
-                stringBuilder.append(line).append("\n");
-            }
-        } catch (Exception e) {
-            Log.d("Error", Objects.requireNonNull(e.getMessage()));
-        }
-
-        try{
-            JSONObject obj = new JSONObject(stringBuilder.toString());
-            jsonArray = obj.getJSONArray("metadata");
-            createGameItems();
-        } catch (JSONException e){
-            Log.d("Error", Objects.requireNonNull(e.getMessage()));
-        }
-    }
-
-    private void createGameItems(){
-        if(jsonArray == null) return;
-
-        try {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject item = jsonArray.getJSONObject(i);
-                JSONArray games = item.getJSONArray("games");
-                JSONArray tasks = item.getJSONArray("tasks");
-                ArrayList<String> tasksList = getArrayListFromJSONArray(tasks);
-                for (int j=0; j<games.length(); j++){
-                    GameData game = new GameData(games.getString(j), tasksList);
-                    gameDataList.add(game);
-                }
-            }
-            Log.d("Game Data List", gameDataList.toString());
-
-            gameAdapter = new GameAdapter(this, gameDataList);
-            ListView gameView = findViewById(R.id.gameView);
-            gameView.setAdapter(gameAdapter);
-        } catch (JSONException e){
-            Log.d("JSON Error", Objects.requireNonNull(e.getMessage()));
-        }
-    }
-
-    private ArrayList<String> getArrayListFromJSONArray(JSONArray jsonArr){
-        ArrayList<String> arrayList = new ArrayList<>();
-
-        try {
-            for (int i = 0; i < jsonArr.length(); i++) {
-                arrayList.add(jsonArr.getString(i));
-            }
-        } catch(Exception e){
-            Log.d("JSONArray Error", Objects.requireNonNull(e.getMessage()));
-        }
-
-        return arrayList;
-    }
-
-    private void writeCSV() {
-        ContentResolver resolver = getContentResolver();
-        Uri collectionUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-
-        String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=? AND " +
-                MediaStore.MediaColumns.RELATIVE_PATH + "=?";
-        String[] selectionArgs = new String[]{"completed_tasks.csv", Environment.DIRECTORY_DOCUMENTS + "/"};
-
-        int deleted = resolver.delete(collectionUri, selection, selectionArgs);
-        if (deleted > 0) {
-            Log.d("CSV Write", "Deleted existing file: " + deleted + " record(s)");
-        }
-
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.MediaColumns.DISPLAY_NAME, "completed_tasks.csv");
-        values.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
-        values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
-
-        Uri uri = resolver.insert(collectionUri, values);
-
-        if (uri != null) {
-            try (OutputStream outputStream = resolver.openOutputStream(uri);
-                 OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
-
-                ArrayList<CompletedTask> completedTaskList = CompletedJSON.getCompletedTasks(this.getBaseContext());
-
-                writer.write("Game,Task\n");
-
-                for (int i = 0; i < completedTaskList.size(); i++) {
-                    CompletedTask task = completedTaskList.get(i);
-                    String line = String.format("%s,%s\n", task.game, task.task);
-                    writer.write(line);
-                }
-
-                Toast.makeText(this.getBaseContext(), "Saved into completed_tasks.csv in Documents folder", Toast.LENGTH_SHORT).show();
-
-            } catch (IOException e) {
-                Log.d("CSV Write Error", Objects.requireNonNull(e.getMessage()));
-                Toast.makeText(this.getBaseContext(), "Failed to save CSV file", Toast.LENGTH_SHORT).show();
-            }
-        }
+        btn.setOnClickListener(v -> CompletedJSON.writeCSV(this.getBaseContext()));
     }
 }
